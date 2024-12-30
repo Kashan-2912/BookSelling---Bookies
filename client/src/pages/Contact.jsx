@@ -1,6 +1,13 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 const Contact = () => {
+  const handleSubmit = (e) => {
+    toast.success(
+      "Your message has been forwarded to concerned authorities successfully!"
+    );
+    console.log("coming");
+  };
   return (
     <section className="py-20 bg-white dark:bg-slate-900 dark:text-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,7 +19,7 @@ const Contact = () => {
           reach out to us. We're here to help you with any issues you might be
           facing.
         </p>
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium ">
               Name

@@ -1,8 +1,23 @@
 import React, { useState } from "react";
 import HeroImage from "../assets/books.png";
+import { useNavigate } from "react-router-dom";
+import EmailModel from "./EmailModel";
 
 const Hero = () => {
   const [email, setEmail] = useState("");
+  const [showEmailModel, setShowEmailModel] = useState(false);
+  const navigate = useNavigate();
+  const handleStarted = () => {
+    if (email) {
+      navigate("/books");
+    } else {
+      setShowEmailModel(true);
+    }
+  };
+
+  const onOk = () => {
+    setShowEmailModel(false);
+  };
 
   return (
     <section className="text-gray-600 bg-white dark:bg-slate-900 dark:text-white body-font pt-12">
@@ -31,9 +46,13 @@ const Hero = () => {
             }}
           />
           <div className="flex justify-center">
-            <button className="inline-flex text-white bg-primary-red border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded-md text-lg">
+            <button
+              onClick={handleStarted}
+              className="inline-flex text-white bg-primary-red border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded-md text-lg"
+            >
               Get Started
             </button>
+            <EmailModel onOk={onOk} show={showEmailModel} />
           </div>
         </div>
         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
